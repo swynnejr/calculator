@@ -2,13 +2,25 @@
 
 class Calculator:
 
-    def calculate(self, s):
-
-        result = 0
-        current = 0
+    def calculate(self, expression):
         stack = []
-
-        return result + current
+        for element in expression:
+            if element == '+':
+                stack.append(stack.pop() + stack.pop())
+            elif element == '*':
+                stack.append(stack.pop() * stack.pop())
+            elif element == '-':
+                el2 = stack.pop()
+                el1 = stack.pop()
+                stack.append(el1 - el2)
+            elif element == '/':
+                el2 = stack.pop()
+                el1 = stack.pop()
+                stack.append(el1 / el2)
+            else:
+                stack.append(element)
+            print(stack)
+        return stack.pop()
 
 print("Launching Calculator Application...")
 calc = Calculator()

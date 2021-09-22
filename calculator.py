@@ -6,6 +6,7 @@ class Calculator:
 
         result = 0
         current = 0
+        stack = []
 
         return result + current
 

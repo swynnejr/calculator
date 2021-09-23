@@ -1,9 +1,12 @@
+import re
+
 class Calculator:
 
     def calculate(self, expression):
         global stack
         expressionList = expression.split(" ")
         while user_input.lower() not in ["exit", "quit", "stop", "q", "close", "help", "h"]:
+            regex = re.search('[a-zA-Z]', user_input)
             try:
                 for element in expressionList:
                     if element == '+':
@@ -21,12 +24,18 @@ class Calculator:
                             print("")
                             print("Please try another expression.")
                             print("")
-                            print(f"Your current input is { stack }")
+                            print(f"Expression in progress is: { stack }")
                             # stack = []
                         else:
                             el1 = stack.pop()
                             dividend = (el1 / el2)
                             stack.append(round(dividend, 4))
+                    elif regex != None:
+                        print("User Input = " + user_input)
+                        print("")
+                        print("Please only input NUMBERS or + - * / operators separated by a space.")
+                        print("")
+                        print(f"Expression in progress is: { stack }")
                     else:
                         if "." not in element:
                             number = int(element)
@@ -42,13 +51,8 @@ class Calculator:
                 print("Invalid Input = " + user_input)
                 print("")
                 print("Please only input numbers or + - * / operators separated by a space.")
-                stack = []
             # finally:
-            #     print("")
-            #     print("  < Thank you, have a nice day >")
-            #     print("")
-            #     print("  < Exiting the calculator >")
-
+            #     user_input = input("> ")
 
 print("")
 print("  < Launching Reverse Polish Notation Calculator >")
@@ -61,9 +65,6 @@ calc = Calculator()
 user_input = ""
 stack = []
 while user_input.lower() not in ["exit", "quit", "stop", "q", "close"]:
-    user_input = input("> ")
-    output = calc.calculate(user_input)
-    print(output)
     if user_input.lower() in ["help", "h"]:
         print("  ◦◦◦ HELP ◦◦◦ ")
         print("")
@@ -101,6 +102,10 @@ while user_input.lower() not in ["exit", "quit", "stop", "q", "close"]:
         print("")
         print("      < RESULT >")
         print("  1.0 ")
+        user_input = input("> ")
+        output = calc.calculate(user_input)
+        print(output)
+    else:
         user_input = input("> ")
         output = calc.calculate(user_input)
         print(output)

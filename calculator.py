@@ -5,11 +5,18 @@ class Calculator:
     def calculate(self, expression):
         global stack
         expressionList = expression.split(" ")
-        while user_input.lower() not in ["exit", "quit", "stop", "q", "close", "help", "h"]:
+        while user_input.lower() not in ["exit", "quit", "stop", "q", "close", "help", "h", "clear", "c"]:
             regex = re.search('[^\r\n 0-9\.\+\-\*\/]', user_input)
+            anyCharacter = re.search('[^/.]', user_input)
             try:
                 for element in expressionList:
-                    if element == '+':
+                    if anyCharacter == None:
+                        print("User Input was empty ")
+                        print("")
+                        print("Please input NUMBERS or + - * / operators separated by a space.")
+                        print("")
+                        print(f"Expression in progress is: { stack }")
+                    elif element == '+':
                         stack.append(stack.pop() + stack.pop())
                     elif element == '*':
                         stack.append(stack.pop() * stack.pop())
@@ -25,7 +32,6 @@ class Calculator:
                             print("Please try another expression.")
                             print("")
                             print(f"Expression in progress is: { stack }")
-                            # stack = []
                         else:
                             el1 = stack.pop()
                             dividend = (el1 / el2)
@@ -43,7 +49,8 @@ class Calculator:
                             number = float(element)
                         stack.append(number)
                     print(stack)
-                return stack[-1]
+                if len(stack) > 0:
+                    return stack[-1]
             except:
                 print("")
                 print("I wasn't able to process your request:")
@@ -51,8 +58,6 @@ class Calculator:
                 print("Invalid Input = " + user_input)
                 print("")
                 print("Please only input numbers or + - * / operators separated by a space.")
-            # finally:
-            #     user_input = input("> ")
 
 print("")
 print("  < Launching Reverse Polish Notation Calculator >")
@@ -105,6 +110,11 @@ while user_input.lower() not in ["exit", "quit", "stop", "q", "close"]:
         user_input = input("> ")
         output = calc.calculate(user_input)
         print(output)
+    elif user_input.lower() in ["clear", "c"]:
+        stack = []
+        print("clear")
+        user_input = input("> ")
+        output = calc.calculate(user_input)
     else:
         user_input = input("> ")
         output = calc.calculate(user_input)

@@ -6,7 +6,7 @@ class Calculator:
         global stack
         expressionList = expression.split(" ")
         while user_input.lower() not in ["exit", "quit", "stop", "q", "close", "help", "h"]:
-            regex = re.search('[0-9 +-/*]', user_input)
+            regex = re.search('[^\r\n 0-9\.\+\-\*\/]', user_input)
             try:
                 for element in expressionList:
                     if element == '+':
@@ -30,7 +30,7 @@ class Calculator:
                             el1 = stack.pop()
                             dividend = (el1 / el2)
                             stack.append(round(dividend, 4))
-                    elif regex == None:
+                    elif regex != None:
                         print("User Input = " + user_input)
                         print("")
                         print("Please only input NUMBERS or + - * / operators separated by a space.")

@@ -7,15 +7,15 @@ class Calculator:
         expressionList = expression.split(" ")
         while user_input.lower() not in ["exit", "quit", "stop", "q", "close", "help", "h", "clear", "c"]:
             regex = re.search('[^\r\n 0-9\.\+\-\*\/]', user_input)
-            anyCharacter = re.search('[^/.]', user_input)
+            anyCharacter = re.search('^$', user_input)
             try:
                 for element in expressionList:
-                    if anyCharacter == None:
+                    if anyCharacter != None:
                         print("User Input was empty ")
                         print("")
                         print("Please input NUMBERS or + - * / operators separated by a space.")
                         print("")
-                        print(f"Expression in progress is: { stack }")
+                        # print(f"Expression in progress is: { stack }")
                     elif element == '+':
                         stack.append(stack.pop() + stack.pop())
                     elif element == '*':
@@ -41,16 +41,18 @@ class Calculator:
                         print("")
                         print("Please only input NUMBERS or + - * / operators separated by a space.")
                         print("")
-                        print(f"Expression in progress is: { stack }")
+                        # print(f"Expression in progress is: { stack }")
                     else:
                         if "." not in element:
                             number = int(element)
                         else:
                             number = float(element)
                         stack.append(number)
-                    print(stack)
+                    # print(stack)
                 if len(stack) > 0:
                     return stack[-1]
+                else:
+                    return "You have a clean slate"
             except:
                 print("")
                 print("I wasn't able to process your request:")
@@ -65,6 +67,8 @@ print("")
 print("  < Version 1.0 >")
 print("")
 print("  < This version currently handles + - * / operators >")
+print("")
+print("  < CLEAR: c     QUIT: q     HELP: h >")
 print("")
 calc = Calculator()
 user_input = ""

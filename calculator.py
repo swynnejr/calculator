@@ -18,15 +18,15 @@ class Calculator:
                         print("")
                         print(f"Expression in progress is: { stack }")
                         print("")
-                    elif element == '+':
+                    elif element == '+' and len(stack) > 1:
                         stack.append(stack.pop() + stack.pop())
-                    elif element == '*':
+                    elif element == '*' and len(stack) > 1:
                         stack.append(stack.pop() * stack.pop())
-                    elif element == '-':
+                    elif element == '-' and len(stack) > 1:
                         el2 = stack.pop()
                         el1 = stack.pop()
                         stack.append(el1 - el2)
-                    elif element == '/':
+                    elif element == '/' and len(stack) > 1:
                         el2 = stack.pop()
                         if el2 == 0:
                             print("")
@@ -40,6 +40,16 @@ class Calculator:
                             el1 = stack.pop()
                             dividend = (el1 / el2)
                             stack.append(round(dividend, 4))
+                    elif element in ['+', '-', '*', '/'] and len(stack) < 2:
+                        print("")
+                        print("You must have more operands than operators")
+                        print("")
+                        print("Valid operators are + - * /")
+                        print("")
+                        print("Valid operands are numbers")
+                        print("")
+                        print(f"Expression in progress is: { stack }")
+                        print("")
                     elif regex != None:
                         print("")
                         print("User Input = " + user_input)

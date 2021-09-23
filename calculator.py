@@ -16,16 +16,24 @@ class Calculator:
                         stack.append(el1 - el2)
                     elif element == '/':
                         el2 = stack.pop()
-                        el1 = stack.pop()
-                        dividend = (el1 / el2)
-                        stack.append(round(dividend, 4))
+                        if el2 == 0:
+                            print("This expression attempted to divide by zero.")
+                            print("")
+                            print("Please try another expression.")
+                            print("")
+                            print(f"Your current input is { stack }")
+                            # stack = []
+                        else:
+                            el1 = stack.pop()
+                            dividend = (el1 / el2)
+                            stack.append(round(dividend, 4))
                     else:
                         if "." not in element:
                             number = int(element)
                         else:
                             number = float(element)
                         stack.append(number)
-                    # print(stack)
+                    print(stack)
                 return stack[-1]
             except:
                 print("")
@@ -33,7 +41,7 @@ class Calculator:
                 print("")
                 print("Invalid Input = " + user_input)
                 print("")
-                print("Please only input numbers and + - * / operators separated by a space.")
+                print("Please only input numbers or + - * / operators separated by a space.")
                 stack = []
             # finally:
             #     print("")

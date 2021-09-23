@@ -5,35 +5,40 @@ class Calculator:
     def calculate(self, expression):
         stack = []
         expressionList = expression.split(" ")
-        for element in expressionList:
-            if element == '+':
-                stack.append(stack.pop() + stack.pop())
-            elif element == '*':
-                stack.append(stack.pop() * stack.pop())
-            elif element == '-':
-                el2 = stack.pop()
-                el1 = stack.pop()
-                stack.append(el1 - el2)
-            elif element == '/':
-                el2 = stack.pop()
-                el1 = stack.pop()
-                dividend = (el1 / el2)
-                stack.append(round(dividend, 4))
-            else:
-                if "." not in element:
-                    number = int(element)
+        try:
+            for element in expressionList:
+                if element == '+':
+                    stack.append(stack.pop() + stack.pop())
+                elif element == '*':
+                    stack.append(stack.pop() * stack.pop())
+                elif element == '-':
+                    el2 = stack.pop()
+                    el1 = stack.pop()
+                    stack.append(el1 - el2)
+                elif element == '/':
+                    el2 = stack.pop()
+                    el1 = stack.pop()
+                    dividend = (el1 / el2)
+                    stack.append(round(dividend, 4))
                 else:
-                    number = float(element)
-                stack.append(number)
-            print(stack)
-        return stack.pop()
+                    if "." not in element:
+                        number = int(element)
+                    else:
+                        number = float(element)
+                    stack.append(number)
+                # print(stack)
+            return stack.pop()
+        except:
+            print("I wasn't able to process your request:")
+            print(user_input)
+            print("Please only input numbers and + - * / operators separated by a space.")
 
 print("")
-print("   Launching Reverse Polish Notation Calculator")
+print("  < Launching Reverse Polish Notation Calculator >")
 print("")
-print("   Version 1.0")
+print("  < Version 1.0 >")
 print("")
-print("   This version currently handles + - * / operators")
+print("  < This version currently handles + - * / operators >")
 print("")
 calc = Calculator()
 user_input = input("> ")
@@ -42,6 +47,6 @@ if user_input.lower() not in ["exit", "quit", "stop", "q", "close"]:
     print(output)
 else:
     print("")
-    print("   Thank you, have a nice day")
+    print("  < Thank you, have a nice day >")
     print("")
-    print("   Exiting the calculator...")
+    print("  < Exiting the calculator >")

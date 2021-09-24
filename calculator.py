@@ -5,11 +5,11 @@ class Calculator:
     def calculate(self, expression):
         global stack
         expressionList = expression.split(" ")
-        while user_input.lower() not in ["exit", "quit", "stop", "q", "close", "help", "h", "clear", "c"]:
-            invalidCharacters = re.search('[^\r\n 0-9\.\+\-\*\/]', user_input)
+        while user_input.upper() not in ["EXIT", "QUIT", "STOP", "Q", "CLOSE", "HELP", "H", "CLEAR", "C", "^D"]:
+            invalidCharacters = re.search('[^\r\n 0-9\.\+\-\*\/\^D]', user_input)
             anyCharacter = re.search('^$', user_input)
             mixedValid = re.search('(?:[0-9]+[+\-*\/]|[+\*\/]+[0-9])', user_input)
-            startSpace = re.search('^[\s].*', user_input)
+            validSpacing = re.search('^\S((?!.*  ).*\S)?$', user_input)
             try:
                 for element in expressionList:
                     if anyCharacter != None:
@@ -42,9 +42,11 @@ class Calculator:
                             el1 = stack.pop()
                             dividend = (el1 / el2)
                             stack.append(round(dividend, 4))
-                    elif startSpace:
+                    elif not validSpacing:
                         print("")
-                        print("You must not start your input with a space.")
+                        print("Please do not start or end your input with a space.")
+                        print("")
+                        print("Also, please only use a single space between valid inputs.")
                         print("")
                         print("Please retry your expression.")
                         print("")
@@ -52,7 +54,7 @@ class Calculator:
                         print("")
                     elif mixedValid:
                         print("")
-                        print("You must separate valid inputs with a space.")
+                        print("Please separate valid inputs with a space.")
                         print("")
                         print("Please retry your expression.")
                         print("")
@@ -84,6 +86,7 @@ class Calculator:
                         stack.append(number)
                     # print(stack)
                 if len(stack) > 0:
+                    # print(user_input)
                     return stack[-1]
                 else:
                     return "You have a clean slate"
@@ -108,8 +111,8 @@ print("")
 calc = Calculator()
 user_input = ""
 stack = []
-while user_input.lower() not in ["exit", "quit", "stop", "q", "close"]:
-    if user_input.lower() in ["help", "h"]:
+while user_input.upper() not in ["EXIT", "QUIT", "STOP", "Q", "CLOSE", "^D"]:
+    if user_input.upper() in ["HELP", "H"]:
         print("          ◦◦◦ HELP ◦◦◦ ")
         print("")
         print("  ◦ Reverse Polish Notation is also known as 'postfix' notation ")
@@ -159,10 +162,10 @@ while user_input.lower() not in ["exit", "quit", "stop", "q", "close"]:
         print("")
         user_input = input("> ")
         output = calc.calculate(user_input)
-        print(output)
-    elif user_input.lower() in ["clear", "c"]:
+        # print(output)
+    elif user_input.upper() in ["CLEAR", "C"]:
         stack = []
-        print("clear")
+        print("Clear input")
         user_input = input("> ")
         output = calc.calculate(user_input)
     else:

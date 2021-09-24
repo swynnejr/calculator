@@ -6,17 +6,19 @@ class Calculator:
         global stack
         expressionList = expression.split(" ")
         while user_input.lower() not in ["exit", "quit", "stop", "q", "close", "help", "h", "clear", "c"]:
-            regex = re.search('[^\r\n 0-9\.\+\-\*\/]', user_input)
+            invalidCharacters = re.search('[^\r\n 0-9\.\+\-\*\/]', user_input)
             anyCharacter = re.search('^$', user_input)
+            mixedValid = re.search('(?:[0-9]+[+\-*\/]|[+\*\/]+[0-9])', user_input)
+            startSpace = re.search('^[\s].*', user_input)
             try:
                 for element in expressionList:
                     if anyCharacter != None:
                         print("")
-                        print("User Input was empty ")
-                        print("")
-                        print("Please input NUMBERS or + - * / operators separated by a space.")
+                        print("User Input was empty: Checking Status ")
                         print("")
                         print(f"Expression in progress is: { stack }")
+                        print("")
+                        print("If this was an error, please input NUMBERS or + - * / operators separated by a space.")
                         print("")
                     elif element == '+' and len(stack) > 1:
                         stack.append(stack.pop() + stack.pop())
@@ -40,9 +42,25 @@ class Calculator:
                             el1 = stack.pop()
                             dividend = (el1 / el2)
                             stack.append(round(dividend, 4))
+                    elif startSpace:
+                        print("")
+                        print("You must not start your input with a space.")
+                        print("")
+                        print("Please retry your expression.")
+                        print("")
+                        print(f"Expression in progress is: { stack }")
+                        print("")
+                    elif mixedValid:
+                        print("")
+                        print("You must separate valid inputs with a space.")
+                        print("")
+                        print("Please retry your expression.")
+                        print("")
+                        print(f"Expression in progress is: { stack }")
+                        print("")
                     elif element in ['+', '-', '*', '/'] and len(stack) < 2:
                         print("")
-                        print("You must have more operands than operators")
+                        print("You must have two or more operands to use an operator")
                         print("")
                         print("Valid operators are + - * /")
                         print("")
@@ -50,7 +68,7 @@ class Calculator:
                         print("")
                         print(f"Expression in progress is: { stack }")
                         print("")
-                    elif regex != None:
+                    elif invalidCharacters != None:
                         print("")
                         print("User Input = " + user_input)
                         print("")
@@ -134,6 +152,11 @@ while user_input.lower() not in ["exit", "quit", "stop", "q", "close"]:
         print("")
         print("        ◦◦◦ RESULT ◦◦◦")
         print("  1.0 ")
+        print("")
+        print("        ◦◦◦ CHECK STATUS ◦◦◦")
+        print("")
+        print("To check the status of your expression, simply submit an empty input")
+        print("")
         user_input = input("> ")
         output = calc.calculate(user_input)
         print(output)

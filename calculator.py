@@ -1,8 +1,8 @@
 import printedMessages
 import re
 
-# Calculator Functionality
-
+# Calculator Internal Functionality
+# *********************************
 
 def statusUpdate():
     print(f"Expression in progress is: { stack }")
@@ -14,7 +14,6 @@ def verifyInput():
     print("")
     print("Please only input numbers or + - * / operators separated by a space.")
     print("")
-
 
 class Calculator:
 
@@ -90,6 +89,8 @@ class Calculator:
                 printedMessages.tryFailed()
                 verifyInput()
 
+#  User Experience
+# ****************
 
 printedMessages.welcomeMessage()
 calc = Calculator()

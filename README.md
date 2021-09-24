@@ -8,6 +8,8 @@ You will need to have any version of [Python 3](https://www.python.org/downloads
 
 There are two files available in this repository and you will want to have both in the same folder.
 
+calculator.py
+printedMessages.py
 
 ## Usage
 

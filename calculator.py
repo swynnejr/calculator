@@ -1,3 +1,4 @@
+import errorMessages
 import re
 
 class Calculator:
@@ -12,14 +13,11 @@ class Calculator:
             validSpacing = re.search('^\S((?!.*  ).*\S)?$', user_input)
             try:
                 for element in expressionList:
+
                     if anyCharacter != None:
-                        print("")
-                        print("User Input was empty: Checking Status ")
-                        print("")
+                        errorMessages.emptyInput()
                         print(f"Expression in progress is: { stack }")
-                        print("")
-                        print("If this was an error, please input NUMBERS or + - * / operators separated by a space.")
-                        print("")
+
                     elif element == '+' and len(stack) > 1:
                         stack.append(stack.pop() + stack.pop())
                     elif element == '*' and len(stack) > 1:
@@ -84,7 +82,7 @@ class Calculator:
                         else:
                             number = float(element)
                         stack.append(number)
-                    # print(stack)
+                    print(stack)
                 if len(stack) > 0:
                     # print(user_input)
                     return stack[-1]
@@ -139,19 +137,19 @@ while user_input.upper() not in ["EXIT", "QUIT", "STOP", "Q", "CLOSE", "^D"]:
         print("")
         print("        ◦◦◦ PROCESS ◦◦◦")
         print("")
-        print("      [10]")
-        print("      [10, 4]")
-        print("      [10, 4, 3]")
-        print("      [10, 4, 3, 2]")
-        print("      [10, 4, 3, 2, 1]")
-        print("2+1=3            | /")
-        print("      [10, 4, 3, 3]")
-        print("3+3=6         | /")
-        print("      [10, 4, 6]")
-        print("6+4=10     | /")
-        print("      [10, 10]")
-        print("10/10=1 | /")
-        print("      [1.0]")
+        print("        [10]")
+        print("        [10, 4]")
+        print("        [10, 4, 3]")
+        print("        [10, 4, 3, 2]")
+        print("        [10, 4, 3, 2, 1]")
+        print("2+1=3              | /")
+        print("        [10, 4, 3, 3]")
+        print("3+3=6           | /")
+        print("        [10, 4, 6]")
+        print("6+4=10       | /")
+        print("        [10, 10]")
+        print("10/10=1   | /")
+        print("        [1.0]")
         print("")
         print("        ◦◦◦ RESULT ◦◦◦")
         print("  1.0 ")

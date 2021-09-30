@@ -15,6 +15,7 @@ def verifyInput():
     print("Please only input numbers or + - * / operators separated by a space.")
     print("")
 
+
 class Calculator:
 
     def calculateRPN(self, expression):
@@ -59,18 +60,22 @@ class Calculator:
                     elif not validSpacing:
                         printedMessages.invalidSpacing()
                         statusUpdate()
+                        break
 
                     elif mixedValid:
                         printedMessages.mixingValidInputs()
                         statusUpdate()
+                        break
 
                     elif element in ['+', '-', '*', '/'] and len(stack) < 2:
                         printedMessages.tooManyOperators()
                         statusUpdate()
+                        break
 
                     elif invalidCharacters != None:
                         verifyInput()
                         statusUpdate()
+                        break
 
                     else:
                         if "." not in element:
@@ -102,12 +107,15 @@ while user_input.upper() not in ["EXIT", "QUIT", "STOP", "Q", "CLOSE", "^D"]:
         printedMessages.helpRequested()
         user_input = input("> ")
         output = calc.calculateRPN(user_input)
+        print(output)
 
     elif user_input.upper() in ["CLEAR", "C"]:
         stack = []
         print("Clear input")
         user_input = input("> ")
         output = calc.calculateRPN(user_input)
+        print(output)
+
 
     else:
         user_input = input("> ")
@@ -116,5 +124,7 @@ while user_input.upper() not in ["EXIT", "QUIT", "STOP", "Q", "CLOSE", "^D"]:
 
 else:
     printedMessages.exitMessage()
+
+
 
 

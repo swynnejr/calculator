@@ -9,11 +9,12 @@ def statusUpdate():
     print("")
 
 def verifyInput():
-    print("")
-    print("Invalid Input = " + user_input)
-    print("")
-    print("Please only input numbers or + - * / operators separated by a space.")
-    print("")
+    print(f"""
+    Invalid Input =  { user_input }
+    \n
+    Please only input numbers or + - * / operators separated by a space.
+    \n
+    """)
 
 
 class Calculator:

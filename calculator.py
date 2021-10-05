@@ -9,12 +9,10 @@ def statusUpdate():
     print("")
 
 def verifyInput():
-    print(f"""
-    Invalid Input =  { user_input }
-    \n
-    Please only input numbers or + - * / operators separated by a space.
-    \n
-    """)
+    print(f"""Invalid Input =  { user_input }
+
+Please only input numbers or + - * / operators separated by a space.
+""")
 
 
 class Calculator:
@@ -37,7 +35,9 @@ class Calculator:
                         statusUpdate()
 
                     elif element == '+' and len(stack) > 1:
-                        stack.append(stack.pop() + stack.pop())
+                        el2 = stack.pop()
+                        el1 = stack.pop()
+                        stack.append((el1*10000 + el2*10000)/10000)
 
                     elif element == '*' and len(stack) > 1:
                         stack.append(stack.pop() * stack.pop())
@@ -45,7 +45,7 @@ class Calculator:
                     elif element == '-' and len(stack) > 1:
                         el2 = stack.pop()
                         el1 = stack.pop()
-                        stack.append(el1 - el2)
+                        stack.append((el1*10000 - el2*10000)/10000)
 
                     elif element == '/' and len(stack) > 1:
                         el2 = stack.pop()

@@ -80,11 +80,10 @@ def helpRequested():
 # **************
 
 def emptyInput():
-    print("""
-    User Input was empty: Checking Status
-    \n
-    If this was an error, please input NUMBERS or + - * / operators separated by a space.
-    """)
+    print("""User Input was empty: Checking Status
+
+If this was an error, please input NUMBERS or + - * / operators separated by a space.
+""")
 
 def divideByZero():
     print("")

@@ -14,7 +14,14 @@ printedMessages.py
 
 ## Usage
 
-User will want to use python to run calculator.py
+Simply clone or download the calculator.exe file in this repository and run calculator.exe
+
+OR
+
+Download/clone the following 2 files:
+calculator.py & printedMessages.py into the same folder.
+
+Then from your command line you can navigate to the appropriate folder and use python to run calculator.py
 
 In a Windows Terminal:
 ```bash
